@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>Todo List Application</h1>
+
+    <!-- <ul>
+      <li>{{ list_a }}</li>
+      <li>{{ list_b }}</li>
+    </ul> -->
+
+    <ul>
+      {% for todo_item in all_items %}
+      <li>{{ todo_item.content }}
+
+        <form action="/deleteTodo/{{todo_item.id}}/"
+              style="display: inline;"
+              method="post">{% csrf_token %}
+          <input type="submit" value="Delete">
+        </form>
+      </li>
+      {% endfor %}
+    </ul>
+
+    <form action="/addTodo/" method="post">{% csrf_token %}
+      <input type="text" name="content">
+      <input type="submit" value="Add">
+    </form>
+  </body>
+</html>
